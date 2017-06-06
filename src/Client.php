@@ -597,7 +597,7 @@ class Client
      * @return array|bool
      */
     public function GetClaimValueByName($name){
-        return $this->SendRequest('getvalueforuri', ['uri' => $uri]);
+        return $this->SendRequest('getvalueforname', ['uri' => $uri]);
     }
 
 
