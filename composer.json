@@ -1,0 +1,19 @@
+{
+    "name": "wallermadev/lbryum-php-rpc",
+    "description": "PHP wrapper for Lbryum JSONRPC-API",
+    "type": "library",
+	"keywords": ["lbryum", "lbry", "jsonrpc", "api"],
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Mathew Waller",
+            "email": "wallermadev@lbry.io"
+        }
+    ],
+    "require": {},
+	"autoload": {
+		"psr-4": {
+			"Lbryum\\": "src"
+		}
+	}
+}
