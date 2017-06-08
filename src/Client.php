@@ -36,7 +36,7 @@ class Client
      * @param int $port
      * @param int $id
      */
-    public function __construct($host = 'http://127.0.0.1', $port = 7777, $id = 0)
+    public function __construct($host = 'http://127.0.0.1', $port = 777, $id = 0)
     {
         $this->setHost($host);
         $this->setPort($port);
@@ -143,9 +143,9 @@ class Client
     {
         // ### Build request string
         $request = json_encode([
+            'id'     => 'lbryum',
             'method' => $method,
             'params' => $params,
-            'id'     => $this->getNextId(),
         ]);
 
         // ### Replace braces
@@ -272,6 +272,39 @@ class Client
     public function isAddressMine($address)
     {
         return $this->SendRequest('ismine', ['address' => $address]);
+    }
+
+    /**
+     * Get UTXO Addresss
+     *
+     * @param $txid      string txid
+     * @param $pos      string pos
+     * @return array|bool
+     */
+    public function GetUtxoAddress($txid, $pos){
+        return $this->SendRequest('getutxoaddress', ['txid' => $address, 'pos' => $pos]);
+    }
+
+    /**
+     * Get Merkle branch of an address in the UTXO set
+     *
+     * @param $address      string address to check
+     *
+     * @return array|bool
+     */
+    public function GetProof($address){
+        return $this->SendRequest('getproof', ['address' => $address]);
+    }
+
+    /**
+     * Check if a address is valid
+     *
+     * @param $address      string address to check
+     *
+     * @return array|bool
+     */
+    public function ValidateAddress($address){
+        return $this->SendRequest('validateaddress', ['address' => $address]);
     }
 
     /**
@@ -598,6 +631,16 @@ class Client
      */
     public function GetClaimValueByName($name){
         return $this->SendRequest('getvalueforname', ['uri' => $uri]);
+    }
+
+
+    /**
+     *  Return the entire claim trie
+     *
+     * @return array|bool
+     */
+    public function GetClaimTrie(){
+        return $this->SendRequest('getclaimtrie', []);
     }
 
 
